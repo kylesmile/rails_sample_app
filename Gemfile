@@ -22,7 +22,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :text do
+group :test do
   gem 'capybara'
 end
 
