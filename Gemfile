@@ -3,6 +3,8 @@ ruby '2.1.0'
 
 gem 'rails', '4.0.3'
 gem 'pg'
+gem 'bootstrap-sass'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'rspec-rails'
