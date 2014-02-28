@@ -2,15 +2,22 @@ doctype html
 html
   head
     title = full_title(yield(:title))
-    == stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
-    == javascript_include_tag "application", "data-turbolinks-track" => true
-    == csrf_meta_tags
-    == render 'layouts/shim'
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+    = render 'layouts/shim'
   body
-    == render 'layouts/header'
+    = render 'layouts/header'
     .container
       - flash.each do |key, value|
         div class="alert alert-#{key}" = value
-      == yield
-      == render 'layouts/footer'
-      == debug(params) if Rails.env.development?
+      = yield
+      = render 'layouts/footer'
+      - if Rails.env.development?
+        = debug(params)
+        = debug(request.authorization)
+        = debug(request.content_length)
+        = debug(request.flash)
+        = debug(request.fullpath)
+        = debug(request.ip)
+        = debug(request.media_type)
