@@ -3,8 +3,8 @@ namespace :db do
   task populate: :environment do
     User.create!(name: "Kyle Smith",
                  email: "kyle@smithsrus.com",
-                 password: '&hT0=79b&[H6Z2o$tY#d',
-                 password_confirmation: '&hT0=79b&[H6Z2o$tY#d',
+                 password: 'correcthorsebatterystaple',
+                 password_confirmation: 'correcthorsebatterystaple',
                  admin: true)
     99.times do |n|
       name = Faker::Name.name
@@ -14,6 +14,12 @@ namespace :db do
                    email: email,
                    password: password,
                    password_confirmation: password)
+    end
+
+    users = User.all(limit: 6)
+    50.times do
+      content = Faker::Lorem.sentence(5)
+      users.each { |user| user.microposts.create!(content: content) }
     end
   end
 end
